@@ -594,10 +594,9 @@
               class="form-field field-name"
               id="enquiry-name"
               name="name"
-              type="text" placeholder="Your Name" required
-              style="padding:0.85rem 1rem; border-radius:var(--radius); border:1.5px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.08); color:var(--white); font-family:var(--font-body); font-size:0.875rem; outline:none;"
-              onfocus="this.style.borderColor='var(--saffron-lt)'"
-              onblur="this.style.borderColor='rgba(255,255,255,0.2)'"
+              type="text"
+              placeholder="Your Name"
+              required
             />
             <div class="field-phone phone-field-group">
               <select
@@ -606,7 +605,6 @@
                 name="phone_code"
                 aria-label="Country code"
                 data-default-code="+91"
-                style="padding:0.85rem 0.8rem; border-radius:var(--radius); border:1.5px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.8); font-family:var(--font-body); font-size:0.875rem; outline:none; appearance:none;"
               >
                 <option value="+91" selected>Loading...</option>
               </select>
@@ -614,48 +612,46 @@
                 class="form-field phone-number-field"
                 id="enquiry-phone"
                 name="phone"
-                type="tel" placeholder="Phone Number" required inputmode="numeric" autocomplete="tel-national" maxlength="14"
-                style="padding:0.85rem 1rem; border-radius:var(--radius); border:1.5px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.08); color:var(--white); font-family:var(--font-body); font-size:0.875rem; outline:none;"
-                onfocus="this.style.borderColor='var(--saffron-lt)'"
-                onblur="this.style.borderColor='rgba(255,255,255,0.2)'"
+                type="tel"
+                placeholder="Phone Number"
+                required
+                inputmode="numeric"
+                autocomplete="tel-national"
+                maxlength="14"
               />
             </div>
             <input
               class="form-field field-email"
               id="enquiry-email"
               name="email"
-              type="email" placeholder="Email Address" required autocomplete="email"
-              style="padding:0.85rem 1rem; border-radius:var(--radius); border:1.5px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.08); color:var(--white); font-family:var(--font-body); font-size:0.875rem; outline:none;"
-              onfocus="this.style.borderColor='var(--saffron-lt)'"
-              onblur="this.style.borderColor='rgba(255,255,255,0.2)'"
+              type="email"
+              placeholder="Email Address"
+              required
+              autocomplete="email"
             />
             <select
               class="form-field field-package"
               id="enquiry-package"
               name="package"
               required
-              style="padding:0.85rem 1rem; border-radius:var(--radius); border:1.5px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.8); font-family:var(--font-body); font-size:0.875rem; outline:none; appearance:none;"
             >
-            <option value="" disabled selected>Select Package</option>
-            <option>Char Dham (5N/6D)</option>
-            <option>Do Dham (3N/4D)</option>
-            <option>Custom Yatra</option>
-          </select>
-          <textarea
-            class="form-field field-message"
-            id="enquiry-message"
-            name="message"
-            placeholder="Additional message or special requirements..."
-            rows="3"
-            required
-            style="padding:0.85rem 1rem; border-radius:var(--radius); border:1.5px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.08); color:var(--white); font-family:var(--font-body); font-size:0.875rem; outline:none; resize:vertical;"
-            onfocus="this.style.borderColor='var(--saffron-lt)'"
-            onblur="this.style.borderColor='rgba(255,255,255,0.2)'"
-          ></textarea>
-          <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Send Enquiry ✦</button>
-            <p id="form-msg" class="form-msg"></p>
-          </div>
+              <option value="" disabled selected>Select Package</option>
+              <option>Char Dham (5N/6D)</option>
+              <option>Do Dham (3N/4D)</option>
+              <option>Custom Yatra</option>
+            </select>
+            <textarea
+              class="form-field field-message"
+              id="enquiry-message"
+              name="message"
+              placeholder="Additional message or special requirements..."
+              rows="3"
+              required
+            ></textarea>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">Send Enquiry ✦</button>
+              <p id="form-msg" class="form-msg" aria-live="polite"></p>
+            </div>
           </div>
         </form>
       </div>
@@ -773,6 +769,13 @@
       return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
     }
 
+    function setFormMessage(message, type) {
+      const msg = document.getElementById('form-msg');
+      msg.textContent = message;
+      msg.dataset.state = type;
+      msg.style.display = 'block';
+    }
+
     function handleEnquiry(e) {
       e.preventDefault();
       const form = e.target;
@@ -788,6 +791,7 @@
 
       phoneInput.setCustomValidity('');
       emailInput.setCustomValidity('');
+      delete msg.dataset.state;
       msg.style.display = 'none';
 
       const isValidPhone = phoneCode === '+91'
@@ -801,18 +805,14 @@
             : 'Enter a valid phone number.'
         );
         phoneInput.reportValidity();
-        msg.textContent = 'Please enter a valid phone number.';
-        msg.style.color = '#ffb4b4';
-        msg.style.display = 'block';
+        setFormMessage('Please enter a valid phone number.', 'error');
         return;
       }
 
       if (!isValidEmail(email)) {
         emailInput.setCustomValidity('Enter a valid email address.');
         emailInput.reportValidity();
-        msg.textContent = 'Please enter a valid email address.';
-        msg.style.color = '#ffb4b4';
-        msg.style.display = 'block';
+        setFormMessage('Please enter a valid email address.', 'error');
         return;
       }
 
@@ -822,9 +822,7 @@
 
       window.open(whatsappUrl, '_blank');
 
-      msg.textContent = 'Opening WhatsApp with your enquiry...';
-      msg.style.color = 'rgba(255,255,255,0.78)';
-      msg.style.display = 'block';
+      setFormMessage('Opening WhatsApp with your enquiry...', 'success');
       form.reset();
       setTimeout(() => { msg.style.display = 'none'; }, 6000);
     }
