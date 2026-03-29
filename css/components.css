@@ -1,0 +1,492 @@
+/* ── Section Headers ── */
+.section-header { margin-bottom: 3rem; }
+.section-header.centered { text-align: center; }
+.section-header.centered .divider { margin-inline: auto; }
+
+/* ── Dhams Overview ── */
+.dhams-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.dham-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 2px 12px var(--shadow);
+  transition: var(--transition);
+}
+
+.dham-card:hover { transform: translateY(-5px); box-shadow: 0 10px 32px var(--shadow); }
+
+.dham-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.dham-img-placeholder {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  background: linear-gradient(135deg, var(--ivory-dk), var(--mist));
+}
+
+.dham-body { padding: 1.5rem; }
+
+.dham-badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--saffron);
+  background: rgba(212,98,26,0.1);
+  padding: 0.25rem 0.65rem;
+  border-radius: 20px;
+  margin-bottom: 0.75rem;
+}
+
+.dham-body h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+.dham-body p  { font-size: 0.875rem; }
+
+/* ── Packages Section ── */
+.packages-section { background: var(--ink); }
+.packages-section .label    { color: var(--saffron-lt); }
+.packages-section h2        { color: var(--white); }
+.packages-section p.sub     { color: rgba(255,255,255,0.65); margin-bottom: 3rem; }
+
+.packages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.pkg-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  position: relative;
+  transition: var(--transition);
+}
+
+.pkg-card:hover { background: rgba(255,255,255,0.08); transform: translateY(-4px); }
+
+.pkg-card.featured {
+  border-color: var(--saffron);
+  background: rgba(212,98,26,0.12);
+}
+
+.pkg-popular {
+  position: absolute;
+  top: -0.9rem; left: 50%;
+  transform: translateX(-50%);
+  background: var(--saffron);
+  color: var(--white);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.pkg-icon { font-size: 2.2rem; margin-bottom: 1rem; }
+
+.pkg-card h3 {
+  font-size: 1.5rem;
+  color: var(--white);
+  margin-bottom: 0.25rem;
+}
+
+.pkg-duration {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 1.5rem;
+}
+
+.pkg-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-bottom: 2rem;
+}
+
+.pkg-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.78);
+}
+
+.pkg-features li::before {
+  content: '✦';
+  color: var(--gold);
+  flex-shrink: 0;
+  font-size: 0.65rem;
+  margin-top: 4px;
+}
+
+/* ── Itinerary ── */
+.itinerary-section { background: var(--ivory-dk); }
+
+.itinerary-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+}
+
+.itinerary-timeline::before {
+  content: '';
+  position: absolute;
+  left: 2.5rem;
+  top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--saffron), var(--gold), transparent);
+}
+
+.day-item {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  gap: 0 2rem;
+  padding-bottom: 3rem;
+  position: relative;
+}
+
+.day-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding-top: 0.2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.day-dot {
+  width: 20px; height: 20px;
+  margin-left: calc(2.5rem - 10px);
+  border-radius: 50%;
+  background: var(--saffron);
+  border: 3px solid var(--ivory-dk);
+  box-shadow: 0 0 0 2px var(--saffron);
+}
+
+.day-num {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  color: var(--saffron);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-align: left;
+}
+
+.day-content {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  box-shadow: 0 2px 12px var(--shadow);
+}
+
+.day-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.day-header h3 { font-size: 1.35rem; }
+
+.day-flight {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--saffron);
+  background: rgba(212,98,26,0.1);
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  white-space: nowrap;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.day-points {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.day-points li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+}
+
+.day-points li::before {
+  content: '›';
+  color: var(--gold);
+  font-size: 1rem;
+  line-height: 1.4;
+  flex-shrink: 0;
+}
+
+/* ── Inclusions ── */
+.inclusions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.25rem;
+}
+
+.inclusion-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: 0 1px 8px var(--shadow);
+}
+
+.inclusion-icon {
+  width: 40px; height: 40px;
+  background: rgba(212,98,26,0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.inclusion-text {
+  font-size: 0.855rem;
+  color: var(--ink-soft);
+  line-height: 1.45;
+}
+
+/* ── Hotels Section ── */
+.hotels-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.hotel-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 2px 10px var(--shadow);
+  transition: var(--transition);
+}
+
+.hotel-card:hover { transform: translateY(-3px); }
+
+.hotel-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+
+.hotel-place {
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--saffron);
+  margin-bottom: 0.35rem;
+}
+
+.hotel-name {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--ink);
+}
+
+/* ── Policies / Terms ── */
+.policies-section { background: var(--ivory-dk); }
+
+.policy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.policy-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  box-shadow: 0 2px 10px var(--shadow);
+}
+
+.policy-card h4 {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+}
+
+.policy-card h4 .icon { font-size: 1rem; }
+
+.policy-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.policy-list li {
+  font-size: 0.845rem;
+  color: var(--ink-soft);
+  padding-left: 1rem;
+  position: relative;
+}
+
+.policy-list li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+}
+
+/* ── Contact Section ── */
+.contact-section {
+  background: linear-gradient(135deg, var(--ink) 0%, #2c2218 100%);
+  text-align: center;
+}
+
+.contact-section h2 { color: var(--white); margin-bottom: 0.75rem; }
+.contact-section > .container > p { color: rgba(255,255,255,0.65); margin-bottom: 2.5rem; }
+
+.contact-cards {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.contact-card {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 2rem;
+  min-width: 180px;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.contact-card:hover { background: rgba(255,255,255,0.11); }
+
+.contact-card .cicon { font-size: 1.6rem; margin-bottom: 0.5rem; }
+
+.contact-card .ctitle {
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--saffron-lt);
+  margin-bottom: 0.3rem;
+}
+
+.contact-card .cvalue {
+  font-size: 0.9rem;
+  color: var(--white);
+}
+
+.contact-form {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.contact-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.contact-form-grid .form-field,
+.contact-form-grid .form-actions {
+  width: 100%;
+}
+
+.contact-form-grid .field-email,
+.contact-form-grid .field-package,
+.contact-form-grid .field-message,
+.contact-form-grid .form-actions {
+  grid-column: 1 / -1;
+}
+
+.phone-field-group {
+  display: grid;
+  grid-template-columns: 108px minmax(0, 1fr);
+  gap: 0.75rem;
+}
+
+.phone-field-group .phone-code-field,
+.phone-field-group .phone-number-field {
+  width: 100%;
+}
+
+.form-msg {
+  margin-top: 0.75rem;
+  font-size: 0.84rem;
+  color: rgba(255,255,255,0.78);
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .contact-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form-grid .field-name,
+  .contact-form-grid .field-phone,
+  .contact-form-grid .field-email,
+  .contact-form-grid .field-package,
+  .contact-form-grid .field-message,
+  .contact-form-grid .form-actions {
+    grid-column: 1;
+  }
+
+  .phone-field-group {
+    grid-template-columns: 96px minmax(0, 1fr);
+  }
+}
+
+/* ── Footer ── */
+footer {
+  background: var(--ink);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 2rem 0;
+  text-align: center;
+}
+
+footer p {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.4);
+}
+
+footer .footer-brand {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 0.5rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .itinerary-timeline::before { left: 1.5rem; }
+  .day-item { grid-template-columns: 3.5rem 1fr; gap: 0 1rem; }
+}
