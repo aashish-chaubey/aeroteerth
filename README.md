@@ -30,6 +30,20 @@ aeroteerth/
 
 This site deploys automatically to GitHub Pages on every push to `main`.
 
+### Quick Publish
+
+Use the helper script to stage, commit, and push in one command:
+
+```bash
+./scripts/publish.sh "Update homepage"
+```
+
+If you skip the message, it uses `Update site`:
+
+```bash
+./scripts/publish.sh
+```
+
 ### Manual Setup
 
 1. Fork / clone this repository
