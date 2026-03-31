@@ -1,1 +1,16 @@
 brochure
+.DS_Store
+*.log
+*.tmp
+node_modules/
+dist/
+build/
+coverage/
+.env
+.idea/
+.vscode/
+*.swp
+*.swo
+*.bak
+*.backup
+*.old
